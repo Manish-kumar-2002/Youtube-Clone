@@ -1,0 +1,12 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css");
+@import "tailwindcss";
+
+body{
+    background-color: #000;
+    color:#fff
+}
+.container{
+    max-width:100%;
+    padding:0 20px;
+    margin: 0 auto;
+}
