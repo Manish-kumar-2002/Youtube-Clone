@@ -1,10 +1,23 @@
+import { useDispatch } from "react-redux"
+import { toggleMenu } from "../utils/menuToggleSlice";
+import { Link } from "react-router-dom";
+
 const Header = () => {
+
+
+    const dispatch = useDispatch();
+
+    const handlerClick = () =>{
+        dispatch(toggleMenu())
+        console.log("click");
+    }
+
     return (
-        <header className="py-5 border-b">
+        <header className="py-5 top-0 left-0 fixed w-full bg-black z-10">
             <div className="container flex items-center gap-5 justify-between">
                 <div className="flex gap-8">
-                    <button className="rounded-full cursor-pointer relative"><i className="fa-solid fa-bars text-2xl"></i><span className="block absolute w-11 h-11 rounded-full top-[-8px] left-[-11px] hover:bg-[rgba(255,255,255,0.1)] "></span></button>
-                    <a href="#" className="flex items-center whitespace-nowrap gap-1 text-2xl"><i className="fa-brands fa-youtube text-red-500"></i>YouTube Clone</a>
+                    <button className="rounded-full cursor-pointer relative z-1" onClick={()=>handlerClick()}><i className="fa-solid fa-bars text-2xl"></i><span className="block absolute w-11 h-11 rounded-full top-[-8px] left-[-11px] hover:bg-[rgba(255,255,255,0.1)] z-0"></span></button>
+                    <a to='/' className="flex items-center whitespace-nowrap gap-1 text-2xl"><i className="fa-brands fa-youtube text-red-500"></i>YouTube Clone</a>
                 </div>
                 <div className="w-[50%]">
                     <div className="flex items-center border rounded-full">
