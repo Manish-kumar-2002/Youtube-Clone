@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/menuToggleSlice";
 import { Link } from "react-router-dom";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/constant";
+import { cacheResults } from "../utils/searchCacheSlice";
 // import useSearchApi from "../utils/useSearchApi";
 
 const Header = () => {
@@ -10,10 +11,21 @@ const Header = () => {
   const [suggestionsData,setSuggestionsData] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const searchCache = useSelector((store)=>store.searchCache)
+
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
     const apiWithQuery =
       YOUTUBE_SEARCH_SUGGESTIONS_API + searchQuery.toLowerCase().trim();
-    const timer = setTimeout(() => getSearchData(apiWithQuery), 200);
+    const timer = setTimeout(() => {
+      if(searchCache[searchQuery]){
+        setSuggestionsData(searchCache[searchQuery])
+      }else{
+        getSearchData(apiWithQuery)
+      }
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
@@ -29,12 +41,15 @@ const Header = () => {
       const data = await response.json();
       setSuggestionsData(data[1])
       console.log(data);
+      //update cache
+      dispatch(cacheResults({
+        [searchQuery]:data[1]
+      }))
     } catch (error) {
       console.log("Fetching Error:" + error);
     }
   }
 
-  const dispatch = useDispatch();
 
   const handlerClick = () => {
     dispatch(toggleMenu());
@@ -42,7 +57,7 @@ const Header = () => {
   };
 
   return (
-    <header className="py-5 top-0 left-0 fixed w-full bg-black z-10">
+    <header className="py-5 top-0 left-0 fixed w-full bg-[#0f0f0f] z-10">
       <div className="container flex items-center gap-5 justify-between">
         <div className="flex gap-8">
           <button
@@ -56,7 +71,7 @@ const Header = () => {
             to="/"
             className="flex items-center whitespace-nowrap gap-1 text-2xl"
           >
-            <i className="fa-brands fa-youtube text-red-500"></i>YouTube Clone
+            <i className="fa-brands fa-youtube text-red-500"></i> <span className="hidden md:block">YouTube Clone</span>
           </a>
         </div>
         <div className="w-[50%]">

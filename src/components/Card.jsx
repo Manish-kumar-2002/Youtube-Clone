@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ info }) => {
@@ -5,6 +6,9 @@ const Card = ({ info }) => {
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
   const { viewCount } = statistics;
+
+  const [openPopUp,setOpenPopUp] = useState(false)
+
 
   function convertISOToTime(isoDuration) {
     const match = isoDuration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
@@ -26,9 +30,9 @@ const Card = ({ info }) => {
   // console.log(convertISOToTime("PT45S")); // Output: "0:45"
 
   return (
-    <Link to={`/watch?v=${info.id}`} className="">
+    <Link to={`/watch?v=${info.id}`} className="w-full">
       <div className="rounded-xl shadow-md  overflow-hidden mb-2 h-[160px] relative">
-        <img className="w-full" src={thumbnails?.medium?.url} alt="thumbnail" />
+        <img className="w-full h-full object-cover" src={thumbnails?.medium?.url} alt="thumbnail" />
         <span className="block absolute px-2 text-[12px] rounded-sm bottom-1 right-1 bg-[rgba(0,0,0,0.7)]">
           {convertISOToTime(info?.contentDetails?.duration)}
         </span>
@@ -52,7 +56,10 @@ const Card = ({ info }) => {
         </div>
         <div className="relative cursor-pointer z-1">
           <span className="block absolute w-7 h-7 rounded-full top-[-2px] left-[-12px] hover:bg-[rgba(255,255,255,0.1)] z-0"></span>
-          <i className="fa-solid fa-ellipsis-vertical"></i>
+          <button onClick={()=>setOpenPopUp(!openPopUp)}><i className="fa-solid fa-ellipsis-vertical"></i></button>
+          {
+            openPopUp && <h1>hi</h1>
+          }
         </div>
       </div>
     </Link>
