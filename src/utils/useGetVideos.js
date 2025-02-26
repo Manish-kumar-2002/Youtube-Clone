@@ -17,7 +17,7 @@ const useGetVideos = () => {
               }
             const data = await response.json();
             setData(data.items)
-            console.log(data.items);
+            // console.log(data.items);
         }
         catch(error){
             console.log("Error fetching videos:",error);

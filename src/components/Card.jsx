@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Card = ({ info }) => {
-  console.log(info);
 
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;

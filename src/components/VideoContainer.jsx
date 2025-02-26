@@ -5,7 +5,6 @@ import VideoCintainerShimmer from "./VideoCintainerShimmer";
 const VideoContainer = () => {
 
     const videos = useGetVideos()
-    console.log(videos);
 
     if(videos.length==0){
         return <VideoCintainerShimmer />

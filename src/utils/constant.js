@@ -2,6 +2,15 @@ const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
 
 export const YOUTUBE_VIDEOS_API= "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key="+GOOGLE_API_KEY;
 
+export const YOUTUBE_SEARCH_SUGGESTIONS_API = "http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q="
+
+
+
+
+
+
+
+
 
 
 {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
