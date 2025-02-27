@@ -56,7 +56,7 @@ const Card = ({ info }) => {
         </div>
         <div className="relative cursor-pointer z-1">
           <span className="block absolute w-7 h-7 rounded-full top-[-2px] left-[-12px] hover:bg-[rgba(255,255,255,0.1)] z-0"></span>
-          <button onClick={()=>setOpenPopUp(!openPopUp)}><i className="fa-solid fa-ellipsis-vertical"></i></button>
+          <button className="mr-3" onClick={()=>setOpenPopUp(!openPopUp)}><i className="fa-solid fa-ellipsis-vertical"></i></button>
           {
             openPopUp && <h1>hi</h1>
           }
@@ -65,5 +65,10 @@ const Card = ({ info }) => {
     </Link>
   );
 };
+
+// HOC
+export const AdsCard = ({info}) => {
+  return <div className="border rounded-lg"><Card info={info} /></div>
+} 
 
 export default Card;
