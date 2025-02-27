@@ -19,7 +19,7 @@ const ButtonList = ({name}) => {
 
 
     return (
-        <div className="flex py-2 gap-2 sticky top-[81.5px] overflow-x-auto px-4 z-5 bg-[#0f0f0f] w-full">
+        <div className="flex py-2 gap-2 fixed top-[81.5px] overflow-x-auto z-5 bg-[#0f0f0f] w-full">
             {/* <Slider {...settings}> */}
             {
                 categories.map((item,index)=><Button key={index} name={item} />)

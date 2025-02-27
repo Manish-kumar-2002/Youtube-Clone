@@ -12,19 +12,19 @@ const WatchPage = () => {
   useEffect(() => {
     dispatch(closeMenu());
   }, []);
+
   return (
-    <div className="rounded-xl overflow-hidden h-fit">
-      <iframe
-        width="960"
-        height="520"
-        src={"https://www.youtube.com/embed/"+serchParams.get("v")}
-        title="YouTube video player"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
-    </div>
+    <div className="rounded-xl overflow-hidden h-fit mb-4 md:mb-0 md:w-[70%]">
+        <iframe
+          className="w-full h-[280px] md:h-[650px]"
+          src={"https://www.youtube.com/embed/" + serchParams.get("v")}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+      </div>
   );
 };
 
